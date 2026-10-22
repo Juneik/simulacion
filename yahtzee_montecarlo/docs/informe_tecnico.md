@@ -228,15 +228,3 @@ Una continuación natural sería una estrategia que, en cada decisión, estime e
 6. Glenn, J. (2007). Computer Strategies for Solitaire Yahtzee. *IEEE Symposium on Computational Intelligence and Games*. El valor de la posición inicial bajo la estrategia óptima es aproximadamente 254,59.
 7. NumPy Developers. *NumPy Reference*. https://numpy.org/doc/stable/
 8. Matplotlib Development Team. *Matplotlib Documentation*. https://matplotlib.org/stable/
-
-## Anexo. Guion para el video de cinco minutos
-
-Este anexo no sustituye el documento. Sirve para grabar la explicación que pide la entrega. Conviene tener a la vista `results/aleatoria_vs_avida/convergencia.png`, `results/convergencia_ev_guia.png` y `results/montecarlo_vs_avida/convergencia.png`.
-
-**0:00–1:00. USA, MODIFICA y CREA.** El laboratorio trae un cuaderno, un tablero en JSX y una página que recuerda que cada cara del dado tiene probabilidad 1/6. Usé el cuaderno: decide qué dados conservar probando las 32 máscaras y estimando el puntaje con muestras aleatorias. Modifiqué esa solución para anotar el bonus de 35 y el Yahtzee adicional, y corregí el último relanzamiento, que en la guía se perdía. Creé la repetición de miles de partidas y la comparación con otras dos formas de jugar.
-
-**1:00–3:00. Qué cambió en el programa.** Mostrar una partida corta con `python main.py --demo` y, enseguida, la diferencia de resultados: la estrategia aleatoria promedia 46 puntos y la ávida 202. La de sección superior no sube esa media, pero cobra el bonus superior en el 36 % de las partidas, frente al 2 % de la ávida. La política del cuaderno, ya corregida, promedia 198 y gana más partidos de los que gana la ávida, aunque su media es unos cinco puntos menor porque persigue menos Yahtzees de 100.
-
-**3:00–4:30. Ley de los Grandes Números.** En el experimento del cuaderno, el valor esperado de conservar dos treses oscila cuando hay 10 o 100 muestras y se queda cerca de 17,3 desde las 1 000. En las partidas completas pasa lo mismo con el puntaje: entre 1 000 y 10 000 partidas la media ávida ya no se mueve ni un punto, y dos experimentos independientes la estiman en 201,7 y 201,4. Cada partida sigue siendo muy variable; el promedio, no.
-
-**4:30–5:00. Cierre.** Montecarlo permite ejecutar el azar muchas veces y leer el resultado. La guía lo aplicaba a una decisión de dados. Al repetir la partida, el puntaje medio de cada estrategia se acerca a un valor estable. Esa es la Ley de los Grandes Números en Yahtzee. Queda lejos del jugador óptimo, cuya esperanza publicada es 254,6, porque estas políticas no calculan el valor de todas las casillas futuras.
