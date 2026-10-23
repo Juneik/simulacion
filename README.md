@@ -14,4 +14,4 @@ Estos archivos se usaron como punto de partida y no se reescribieron:
 
 Todo el desarrollo está en `yahtzee_montecarlo/`. Ahí están el código, las pruebas, las gráficas y el borrador del informe (`docs/informe_tecnico.md`).
 
-En Windows, el juego se abre con doble clic en `yahtzee_montecarlo/Ejecutar Yahtzee.bat`. La explicación de las fases USA, MODIFICA y CREA está en el `README.md` de esa carpeta.
+En Windows, el juego se abre con doble clic en `yahtzee_montecarlo/Ejecutar Yahtzee.bat`. El menú deja elegir 1, 100, 10 000 o 100 000 partidas. Arranca con semilla fija y la opción 5 cambia a resultados distintos en cada corrida. La explicación de las fases USA, MODIFICA y CREA está en el `README.md` de esa carpeta.

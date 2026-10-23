@@ -1,0 +1,296 @@
+{
+  "n_games": 100000,
+  "seed": 8914905,
+  "strategies": [
+    "avida",
+    "seccion_superior"
+  ],
+  "players": [
+    {
+      "name": "Jugador 1",
+      "strategy": "avida",
+      "strategy_label": "Ávida",
+      "score": {
+        "n": 100000,
+        "mean": 202.75987,
+        "std": 58.547387008715894,
+        "median": 192.0,
+        "min": 66,
+        "max": 710,
+        "ci95_low": 202.39698953576217,
+        "ci95_high": 203.12275046423784
+      },
+      "upper_subtotal_mean": 40.6524,
+      "upper_bonus_rate": 0.02268,
+      "upper_bonus_mean": 0.7938,
+      "lower_subtotal_mean": 151.49967,
+      "yahtzee_bonus_mean": 9.814,
+      "yahtzee_bonus_rate": 0.08537,
+      "mean_yahtzees_rolled": 0.49567,
+      "yahtzee_scored_rate": 0.37314,
+      "full_house_rate": 0.98094,
+      "small_straight_rate": 0.90056,
+      "large_straight_rate": 0.66921,
+      "checkpoints": [
+        {
+          "n": 50,
+          "running_mean": 191.38
+        },
+        {
+          "n": 100,
+          "running_mean": 200.17
+        },
+        {
+          "n": 250,
+          "running_mean": 199.444
+        },
+        {
+          "n": 500,
+          "running_mean": 198.296
+        },
+        {
+          "n": 1000,
+          "running_mean": 200.515
+        },
+        {
+          "n": 2000,
+          "running_mean": 201.035
+        },
+        {
+          "n": 5000,
+          "running_mean": 201.3934
+        },
+        {
+          "n": 10000,
+          "running_mean": 202.4727
+        },
+        {
+          "n": 20000,
+          "running_mean": 202.47475
+        },
+        {
+          "n": 50000,
+          "running_mean": 202.71346
+        },
+        {
+          "n": 100000,
+          "running_mean": 202.75987
+        }
+      ],
+      "categories": {
+        "ones": {
+          "label": "Unos",
+          "mean": 1.09888,
+          "positive_rate": 0.55294
+        },
+        "twos": {
+          "label": "Doses",
+          "mean": 3.32902,
+          "positive_rate": 0.78376
+        },
+        "threes": {
+          "label": "Treses",
+          "mean": 5.82417,
+          "positive_rate": 0.92493
+        },
+        "fours": {
+          "label": "Cuatros",
+          "mean": 7.87448,
+          "positive_rate": 0.95639
+        },
+        "fives": {
+          "label": "Cincos",
+          "mean": 10.24175,
+          "positive_rate": 0.9692
+        },
+        "sixes": {
+          "label": "Seises",
+          "mean": 12.2841,
+          "positive_rate": 0.98388
+        },
+        "three_of_a_kind": {
+          "label": "Trío",
+          "mean": 18.98747,
+          "positive_rate": 0.99949
+        },
+        "four_of_a_kind": {
+          "label": "Póker",
+          "mean": 17.19076,
+          "positive_rate": 0.94519
+        },
+        "full_house": {
+          "label": "Full",
+          "mean": 24.5235,
+          "positive_rate": 0.98094
+        },
+        "small_straight": {
+          "label": "Escalera pequeña",
+          "mean": 27.0168,
+          "positive_rate": 0.90056
+        },
+        "large_straight": {
+          "label": "Escalera grande",
+          "mean": 26.7684,
+          "positive_rate": 0.66921
+        },
+        "yahtzee": {
+          "label": "Yahtzee",
+          "mean": 18.657,
+          "positive_rate": 0.37314
+        },
+        "chance": {
+          "label": "Chance",
+          "mean": 18.35574,
+          "positive_rate": 1.0
+        }
+      }
+    },
+    {
+      "name": "Jugador 2",
+      "strategy": "seccion_superior",
+      "strategy_label": "Sección superior",
+      "score": {
+        "n": 100000,
+        "mean": 201.10432,
+        "std": 50.23948504310304,
+        "median": 197.0,
+        "min": 61,
+        "max": 706,
+        "ci95_low": 200.79293244562808,
+        "ci95_high": 201.41570755437192
+      },
+      "upper_subtotal_mean": 59.46168,
+      "upper_bonus_rate": 0.35989,
+      "upper_bonus_mean": 12.59615,
+      "lower_subtotal_mean": 125.84649,
+      "yahtzee_bonus_mean": 3.2,
+      "yahtzee_bonus_rate": 0.02895,
+      "mean_yahtzees_rolled": 0.50739,
+      "yahtzee_scored_rate": 0.17184,
+      "full_house_rate": 0.81106,
+      "small_straight_rate": 0.77363,
+      "large_straight_rate": 0.5982,
+      "checkpoints": [
+        {
+          "n": 50,
+          "running_mean": 200.26
+        },
+        {
+          "n": 100,
+          "running_mean": 197.12
+        },
+        {
+          "n": 250,
+          "running_mean": 203.156
+        },
+        {
+          "n": 500,
+          "running_mean": 206.85
+        },
+        {
+          "n": 1000,
+          "running_mean": 204.814
+        },
+        {
+          "n": 2000,
+          "running_mean": 204.3265
+        },
+        {
+          "n": 5000,
+          "running_mean": 203.1118
+        },
+        {
+          "n": 10000,
+          "running_mean": 201.9981
+        },
+        {
+          "n": 20000,
+          "running_mean": 201.1394
+        },
+        {
+          "n": 50000,
+          "running_mean": 201.00596
+        },
+        {
+          "n": 100000,
+          "running_mean": 201.10432
+        }
+      ],
+      "categories": {
+        "ones": {
+          "label": "Unos",
+          "mean": 2.82179,
+          "positive_rate": 0.96754
+        },
+        "twos": {
+          "label": "Doses",
+          "mean": 5.70432,
+          "positive_rate": 0.97541
+        },
+        "threes": {
+          "label": "Treses",
+          "mean": 8.74233,
+          "positive_rate": 0.9884
+        },
+        "fours": {
+          "label": "Cuatros",
+          "mean": 11.31768,
+          "positive_rate": 0.99452
+        },
+        "fives": {
+          "label": "Cincos",
+          "mean": 14.0551,
+          "positive_rate": 0.99428
+        },
+        "sixes": {
+          "label": "Seises",
+          "mean": 16.82046,
+          "positive_rate": 0.9948
+        },
+        "three_of_a_kind": {
+          "label": "Trío",
+          "mean": 18.53411,
+          "positive_rate": 0.94381
+        },
+        "four_of_a_kind": {
+          "label": "Póker",
+          "mean": 13.36372,
+          "positive_rate": 0.70793
+        },
+        "full_house": {
+          "label": "Full",
+          "mean": 20.2765,
+          "positive_rate": 0.81106
+        },
+        "small_straight": {
+          "label": "Escalera pequeña",
+          "mean": 23.2089,
+          "positive_rate": 0.77363
+        },
+        "large_straight": {
+          "label": "Escalera grande",
+          "mean": 23.928,
+          "positive_rate": 0.5982
+        },
+        "yahtzee": {
+          "label": "Yahtzee",
+          "mean": 8.592,
+          "positive_rate": 0.17184
+        },
+        "chance": {
+          "label": "Chance",
+          "mean": 17.94326,
+          "positive_rate": 1.0
+        }
+      }
+    }
+  ],
+  "wins": {
+    "player_one_wins": 47728,
+    "player_two_wins": 51612,
+    "ties": 660,
+    "player_one_win_rate": 0.47728,
+    "player_two_win_rate": 0.51612,
+    "tie_rate": 0.0066
+  }
+}

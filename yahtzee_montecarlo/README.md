@@ -50,13 +50,13 @@ pip install -r requirements.txt
 .\.venv\Scripts\python.exe main.py --partidas 5000 --estrategia-1 aleatoria --estrategia-2 avida --semilla 42
 
 # Las dos comparaciones del informe (10 000 partidas cada una)
-.\.venv\Scripts\python.exe main.py --suite --partidas 10000 --semilla 42
+.\.venv\Scripts\python.exe main.py --suite --partidas 10000 --semilla 42 --salida results/10000_partidas
 
 # Réplica del experimento de convergencia del cuaderno (una máscara)
 .\.venv\Scripts\python.exe main.py --convergencia-guia --semilla 42
 
 # La política de la guía contra la ávida
-.\.venv\Scripts\python.exe main.py -n 1000 --estrategia-1 montecarlo --estrategia-2 avida --sims-mascara 24 --semilla 44 --salida results/montecarlo_vs_avida
+.\.venv\Scripts\python.exe main.py -n 1000 --estrategia-1 montecarlo --estrategia-2 avida --sims-mascara 24 --semilla 44 --salida results/1000_partidas/montecarlo_vs_avida
 
 # Pruebas de reglas, comodín y partida completa
 .\.venv\Scripts\python.exe -m pytest
@@ -87,9 +87,20 @@ Estrategias: `montecarlo` (la de la guía), `aleatoria`, `avida`, `seccion_super
 
 La ávida y la de sección superior no calculan el valor esperado del juego completo. La de la guía sí estima el del turno, con la máscara fija durante la simulación.
 
+## Menú de Windows
+
+Doble clic en `Ejecutar Yahtzee.bat`. El primer menú usa la semilla 42, así que cada opción repite el mismo resultado. La opción 5 abre un segundo menú, sin semilla fija: cada corrida es distinta y se guarda en `results/sin_semilla/`, sin reemplazar las figuras del informe. Desde ese menú, la opción 5 vuelve al modo con semilla. La opción 6 cierra la ventana.
+
+| Opción | Partidas | Carpeta con semilla |
+|--------|----------|---------------------|
+| 1 | 1 | se muestra en la ventana |
+| 2 | 100 | `results/100_partidas` |
+| 3 | 10 000 | `results/10000_partidas` |
+| 4 | 100 000 | `results/100000_partidas` |
+
 ## Resultados que ya están generados
 
-La carpeta `results/` contiene una ejecución de 10 000 partidas por pareja (semillas 42 y 43):
+La carpeta `results/10000_partidas/` contiene una ejecución de 10 000 partidas por pareja (semillas 42 y 43):
 
 | Comparación | Media | Bonus superior | Victorias |
 |-------------|------:|---------------:|----------:|
@@ -100,7 +111,7 @@ La carpeta `results/` contiene una ejecución de 10 000 partidas por pareja (sem
 | Montecarlo (guía), 1 000 partidas | 198,10 | 0,6 % | 529 / 1 000 |
 | Ávida, en ese mismo enfrentamiento | 203,25 | 2,2 % | 463 / 1 000 |
 
-En el segundo experimento hubo 63 empates. En el de Montecarlo contra ávida hubo 8. La convergencia de una máscara, la del cuaderno, está en `results/convergencia_ev_guia.png`: el valor esperado pasa de 17,80 con 10 muestras a 17,29 con 10 000, y desde 1 000 muestras ya no se mueve de forma apreciable. El detalle, los intervalos y las medias por casilla están en `results/suite_resumen.json`. Cada subcarpeta incluye:
+En el segundo experimento hubo 63 empates. En el de Montecarlo contra ávida, guardado en `results/1000_partidas/`, hubo 8. La misma semilla con 100 y con 100 000 partidas deja las medias en el mismo lugar: la aleatoria pasa de 43,04 a 46,07 y la ávida de 195,75 a 202,59. La convergencia de una máscara, la del cuaderno, está en `results/convergencia_ev_guia.png`: el valor esperado pasa de 17,80 con 10 muestras a 17,29 con 10 000, y desde 1 000 muestras ya no se mueve de forma apreciable. El detalle de las 10 000 partidas está en `results/10000_partidas/suite_resumen.json`. Cada comparación incluye:
 
 - `convergencia.png` — media acumulada frente a N
 - `desviacion_lln.png` — distancia de esa media a la media final de la muestra

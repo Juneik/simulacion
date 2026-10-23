@@ -73,7 +73,9 @@ Ninguna de las tres resuelve el juego por programación dinámica. El jugador ó
 
 ### 2.5 Diseño del experimento
 
-Se hicieron dos experimentos de **10 000 partidas** cada uno. Cada partida usa un generador nuevo, derivado de una semilla maestra, así que las partidas son independientes e idénticamente distribuidas dada la pareja de estrategias.
+El mismo diseño se ejecutó tres veces, con 100, 10 000 y 100 000 partidas. El detalle del informe usa las 10 000, porque el intervalo ya es estrecho y las figuras se leen bien. Las otras dos tandas comprueban que la media no cambia de carácter al multiplicar el tamaño de la muestra. Cada partida usa un generador nuevo, derivado de una semilla maestra, así que las partidas son independientes e idénticamente distribuidas dada la pareja de estrategias.
+
+Las corridas con semilla quedan en carpetas del mismo estilo: `results/100_partidas`, `results/10000_partidas` y `results/100000_partidas`. Dentro de cada una están las dos comparaciones, `aleatoria_vs_avida` y `avida_vs_seccion_superior`. La comparación de la política del cuaderno, de 1 000 partidas, está en `results/1000_partidas`. El programa también puede lanzarse sin semilla fija; esas corridas se guardan en `results/sin_semilla/` para no reemplazar las figuras de este informe.
 
 | Experimento | Semilla | Jugador 1 | Jugador 2 |
 |-------------|---------|-----------|-----------|
@@ -91,8 +93,10 @@ Con \(N = 10\,000\) ese intervalo es estrecho. La banda sombreada de las gráfic
 Herramientas: Python 3.12, NumPy (generadores PCG64 y arreglos de resultados) y Matplotlib. No hay interfaz gráfica de juego; la salida analítica son CSV, JSON y PNG. Comando de reproducción:
 
 ```text
-python main.py --suite --partidas 10000 --semilla 42
+python main.py --suite --partidas 10000 --semilla 42 --salida results/10000_partidas
 ```
+
+En Windows, `Ejecutar Yahtzee.bat` ofrece esas tres cantidades y una partida de ejemplo. El menú arranca en modo con semilla. La opción 5 pasa al modo sin semilla, y desde ese segundo menú la opción 5 vuelve al modo fijo.
 
 ## 3. Resultados
 
@@ -135,13 +139,13 @@ Media acumulada en cortes de N, experimento 1:
 
 Desde N = 1 000, la media aleatoria se mueve menos de medio punto y la ávida menos de un punto respecto del valor en N = 10 000. Al principio, en cambio, una sola tanda de 50 partidas desplaza la media ávida varios puntos (197 en un experimento y 207 en el otro).
 
-![Convergencia aleatoria contra ávida](../results/aleatoria_vs_avida/convergencia.png)
+![Convergencia aleatoria contra ávida](../results/10000_partidas/aleatoria_vs_avida/convergencia.png)
 
-![Convergencia ávida contra sección superior](../results/avida_vs_seccion_superior/convergencia.png)
+![Convergencia ávida contra sección superior](../results/10000_partidas/avida_vs_seccion_superior/convergencia.png)
 
 Las dos curvas de cada figura dejan de oscilar y quedan dentro de una banda cada vez más estrecha. La segunda figura es especialmente clara: dos estrategias distintas se separan al comienzo y, después de unos miles de partidas, sus medias quedan prácticamente quietas, a una décima de distancia.
 
-![Distancia a la media final de la muestra](../results/aleatoria_vs_avida/desviacion_lln.png)
+![Distancia a la media final de la muestra](../results/10000_partidas/aleatoria_vs_avida/desviacion_lln.png)
 
 Esta última gráfica mide la distancia entre la media acumulada y la media de las 10 000 partidas. Termina en cero porque el último punto es esa misma media: el dato útil no es el extremo, sino que la distancia ya es pequeña mucho antes. Para la estrategia ávida, saltos de más de 10 puntos al inicio quedan por debajo de 1 punto desde aproximadamente N = 2 000.
 
@@ -149,7 +153,7 @@ La anchura del intervalo también sigue la tasa \(1/\sqrt{N}\). Con una desviaci
 
 ### 3.3 De qué está hecho el puntaje
 
-![Componentes del puntaje: ávida y sección superior](../results/avida_vs_seccion_superior/comparacion_estrategias.png)
+![Componentes del puntaje: ávida y sección superior](../results/10000_partidas/avida_vs_seccion_superior/comparacion_estrategias.png)
 
 En el experimento 2 las medias totales casi coinciden, pero no se componen igual.
 
@@ -165,17 +169,31 @@ La política de sección superior sube unos 19 puntos en la parte alta y unos 12
 
 El objetivo de “tres dados por número” se ve en las casillas altas. Tres unos, doses, treses, cuatros, cincos y seises sumarían 3, 6, 9, 12, 15 y 18 (total 63). La estrategia de sección superior promedia 2,83; 5,72; 8,71; 11,32; 13,95 y 16,92. Queda un poco corta en cada número y por eso supera 63 solo en una de cada tres partidas, no en todas.
 
-![Puntaje medio por categoría](../results/avida_vs_seccion_superior/frecuencia_categorias.png)
+![Puntaje medio por categoría](../results/10000_partidas/avida_vs_seccion_superior/frecuencia_categorias.png)
 
 La ávida anota más en póker, full, escaleras y Yahtzee. En el experimento 2 consigue full en el 97,9 % de las partidas, escalera pequeña en el 89,9 %, escalera grande en el 66,2 % y Yahtzee de 50 en el 37,1 %. La de sección superior baja a 80,5 %, 76,6 %, 59,3 % y 16,7 %, respectivamente, porque a menudo usa la tirada para cerrar un número de arriba.
 
 La aleatoria, en el experimento 1, casi no completa combinaciones: full 3,8 %, escalera grande 2,9 %, Yahtzee de 50 en el 0,07 % de las partidas. Chance, que siempre paga la suma de los dados, concentra 17,5 de sus 45,9 puntos. El resto se reparte en casillas que muchas veces quedan en cero porque la categoría se eligió sin mirar la tirada.
 
-![Histograma ávida contra sección superior](../results/avida_vs_seccion_superior/histograma.png)
+![Histograma ávida contra sección superior](../results/10000_partidas/avida_vs_seccion_superior/histograma.png)
 
 El histograma concentra ambas estrategias alrededor de 200 puntos. La ávida tiene más masa por encima de 300: son las partidas con uno o más bonuses de 100. Esa cola explica que su media no sea menor aunque gane menos partidas que la otra política. La sección superior es más compacta (desviación 50,8 frente a 56,8).
 
-### 3.4 La política de la guía, comparada con la ávida
+### 3.4 Tres tamaños de muestra
+
+Las carpetas `100_partidas`, `10000_partidas` y `100000_partidas` repiten el mismo diseño con la semilla 42. La media al cerrar cada tanda es esta.
+
+| N | Aleatoria | Ávida (contra aleatoria) | Ávida (contra sección superior) | Sección superior |
+|--:|----------:|-------------------------:|--------------------------------:|-----------------:|
+| 100 | 43,04 | 195,75 | 197,58 | 209,40 |
+| 10 000 | 45,93 | 201,69 | 201,39 | 200,47 |
+| 100 000 | 46,07 | 202,59 | 202,07 | 200,90 |
+
+Con 100 partidas la sección superior parece claramente mejor: 209,40 contra 197,58. Sus intervalos todavía se cruzan, así que esa ventaja puede ser una racha. Con 10 000 partidas las dos medias quedan juntas, cerca de 201, y los intervalos se solapan. Con 100 000 el intervalo de la ávida es [201,71; 202,42] y el de la sección superior es [200,59; 201,22]. Ya no se solapan: la ávida queda alrededor de un punto por encima. La sección superior sigue ganando más partidas, 51 587 contra 47 796, con 617 empates.
+
+La aleatoria se mueve de 43,04 a 46,07 y ahí se queda. Entre 10 000 y 100 000 partidas ninguna media cambia más de un punto. Esa es la misma ley, vista ahora al comparar tres experimentos completos y no solo la curva de una sola corrida.
+
+### 3.5 La política de la guía, comparada con la ávida
 
 El cuaderno estima el valor de una máscara, no el de una estrategia a lo largo de muchas partidas. Se replicó su ejemplo: dados `[3, 3, 5, 2, 6]`, se conservan los dos treses y se promedia la mejor nota entre treses, full, trío y chance.
 
@@ -204,13 +222,13 @@ Hubo 8 empates. La ávida anota en promedio **5,16** puntos más. El intervalo e
 
 Este resultado también se estabiliza, con más ruido porque N es menor. La media Montecarlo pasa de 203,17 en las primeras 100 partidas a 198,10 en las 1 000. La ávida pasa de 212,85 a 203,25. La dirección es la misma que en los experimentos de 10 000 partidas: el promedio deja de depender de las primeras decenas de juegos.
 
-![Convergencia Montecarlo de la guía contra ávida](../results/montecarlo_vs_avida/convergencia.png)
+![Convergencia Montecarlo de la guía contra ávida](../results/1000_partidas/montecarlo_vs_avida/convergencia.png)
 
 ## 4. Conclusiones
 
-La Ley de los Grandes Números se observa de tres maneras que no dependen de una sola gráfica. Primero, la media acumulada deja de moverse de forma apreciable a partir de unos miles de partidas: entre N = 1 000 y N = 10 000 el cambio es menor que un punto. Segundo, la precisión crece como \(1/\sqrt{N}\); con 10 000 partidas el intervalo al 95 % de la media ávida mide poco más de dos puntos de extremo a extremo. Tercero, la misma estrategia, estimada en dos experimentos independientes, da 201,69 y 201,39. El azar de cada partida sigue siendo grande —la desviación supera los 50 puntos—, pero el promedio ya no.
+La Ley de los Grandes Números se observa de tres maneras que no dependen de una sola gráfica. Primero, la media acumulada deja de moverse de forma apreciable a partir de unos miles de partidas: entre N = 1 000 y N = 10 000 el cambio es menor que un punto, y al pasar a 100 000 partidas las medias se desplazan menos de un punto más (la aleatoria queda en 46,07 y la ávida en 202,59). Segundo, la precisión crece como \(1/\sqrt{N}\); con 10 000 partidas el intervalo al 95 % de la media ávida mide poco más de dos puntos de extremo a extremo, y con 100 000 mide menos de un punto. Tercero, la misma estrategia, estimada en dos experimentos independientes de 10 000 partidas, da 201,69 y 201,39. El azar de cada partida sigue siendo grande —la desviación supera los 50 puntos—, pero el promedio ya no.
 
-La fase MODIFICA cambia el resultado de juego, no solo el código. Pasar de decidir al azar a anotar el máximo inmediato multiplica el puntaje medio por más de cuatro (de 46 a 202) y casi elimina las derrotas frente a la línea base. La segunda política no sube esa media: la recompone. Persigue el bonus de 35, lo consigue el 36 % de las veces y paga el costo en escaleras, full y Yahtzee. El total esperado queda estadísticamente empatado con el de la ávida, con una leve ventaja en victorias y en la mediana. Mejorar una parte de la tarjeta no mejora sola la esperanza del juego.
+La fase MODIFICA cambia el resultado de juego, no solo el código. Pasar de decidir al azar a anotar el máximo inmediato multiplica el puntaje medio por más de cuatro (de 46 a 202) y casi elimina las derrotas frente a la línea base. La segunda política no sube esa media: la recompone. Persigue el bonus de 35, lo consigue el 36 % de las veces y paga el costo en escaleras, full y Yahtzee. Con 10 000 partidas el total esperado queda estadísticamente empatado con el de la ávida, con una leve ventaja en victorias y en la mediana. Con 100 000 partidas esa media ávida se separa por cerca de un punto; la ventaja en partidos ganados de la sección superior se mantiene. Mejorar una parte de la tarjeta no mejora sola la esperanza del juego.
 
 La política heredada del cuaderno queda en el mismo rango, cerca de 198 puntos. Corregir el último relanzamiento y anotar bonuses no la convierte en la de mayor media: la ávida la supera por unos cinco puntos, concentrados en los Yahtzee de 100. A cambio, la de la guía gana el partido típico y dispersa mucho menos. El aporte no es reemplazar el Montecarlo del profesor, sino poder medirlo contra otras decisiones y ver que el promedio de las partidas obedece la misma ley que el promedio de una máscara.
 
