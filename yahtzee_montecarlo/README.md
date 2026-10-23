@@ -25,7 +25,9 @@ En Windows, si `python` abre la tienda de Microsoft, usa el intérprete del ento
 
 ## Instalación
 
-Desde esta carpeta (`yahtzee_montecarlo`):
+La carpeta `.venv` no se sube a GitHub. En Windows, el doble clic en `Ejecutar Yahtzee.bat` la crea la primera vez, si Python 3.10 o superior ya está instalado. Si no lo está, el programa indica descargarlo desde python.org y marcar "Add python.exe to PATH".
+
+También se puede preparar a mano, desde esta carpeta (`yahtzee_montecarlo`):
 
 ```powershell
 uv venv --python 3.12

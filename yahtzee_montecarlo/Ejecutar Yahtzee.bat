@@ -4,9 +4,15 @@ chcp 65001 >nul
 set PYTHONIOENCODING=utf-8
 cd /d "%~dp0"
 
-if not exist ".venv\Scripts\python.exe" (
-    echo No se encontro Python dentro de esta carpeta.
-    echo Pide ayuda para crear el entorno .venv antes de volver a abrir este archivo.
+call :asegurar_python
+if errorlevel 1 (
+    echo.
+    echo No se pudo preparar Python en este computador.
+    echo.
+    echo 1. Entra a https://www.python.org/downloads/
+    echo 2. Instala Python 3.12
+    echo 3. En el instalador marca "Add python.exe to PATH"
+    echo 4. Vuelve a abrir este archivo
     echo.
     pause
     exit /b 1
@@ -111,6 +117,42 @@ if "!modo!"=="con" (
     set carpeta=results\sin_semilla\!npartidas!_partidas
 )
 exit /b 0
+
+:asegurar_python
+if exist ".venv\Scripts\python.exe" (
+    ".venv\Scripts\python.exe" -c "import numpy, matplotlib" >nul 2>&1
+    if not errorlevel 1 exit /b 0
+)
+
+echo.
+echo Primera vez en este computador.
+echo Se van a instalar las herramientas. Puede tardar unos minutos.
+echo No cierres la ventana.
+echo.
+
+where uv >nul 2>&1
+if not errorlevel 1 (
+    uv venv --python 3.12
+    if exist ".venv\Scripts\python.exe" (
+        uv pip install -r requirements.txt
+        ".venv\Scripts\python.exe" -c "import numpy, matplotlib" >nul 2>&1
+        if not errorlevel 1 exit /b 0
+    )
+)
+
+where py >nul 2>&1
+if not errorlevel 1 (
+    py -3.12 -m venv .venv
+    if not exist ".venv\Scripts\python.exe" py -3.11 -m venv .venv
+    if not exist ".venv\Scripts\python.exe" py -3 -m venv .venv
+    if exist ".venv\Scripts\python.exe" (
+        ".venv\Scripts\python.exe" -m pip install -r requirements.txt
+        ".venv\Scripts\python.exe" -c "import numpy, matplotlib" >nul 2>&1
+        if not errorlevel 1 exit /b 0
+    )
+)
+
+exit /b 1
 
 :fin
 endlocal
